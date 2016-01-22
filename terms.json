@@ -29,6 +29,7 @@
     "GEONS": "?",
     "KRF": "?",
     "PCS": "?",
+    "CPT": "Comprehensive Performance Testing",
     "RNF": "Relnav Filter?",
 
     "WFOV": "Wide Field of View",
@@ -43,6 +44,7 @@
     "SMB": "Standard Message Bus",
     "BRAM": "Block RAM",
     "EDU": "Engineering Development Unit",
+    "ETU": "Engineering Test Unit",
     "I&T": "Integration and Testing",
     "V&V": "Verification and Validation",
 
