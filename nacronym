@@ -91,8 +91,7 @@ class TermResults:
 
         # Single result
         elif len(self.terms) == 1:
-            print(self.terms[0].data['term'])
-            print('------------')
+            print(self.terms[0].data['term'] + ': ', end='')
             self.terms[0].PrintDefinitions()
 
         # Multiple results
