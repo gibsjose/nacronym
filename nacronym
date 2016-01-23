@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """nacronym: NASA acronym search tool
 Usage:
-    nacronym <term> [-a <term_file>]
-    nacronym <term> [-m <match_threshold>]
-    nacronym (-h | --help)
-    nacronym (-v | --version)
+    nacronym [options] <term>
+
 Options:
-    -h --help           Show this screen.
-    -v --version        Show version.
-    <term>              Acronym or term to look up.
-    <term_file>         Term file (JSON): defaults to 'terms.json'
-    <match_threshold>   Match threshold can be: loose, medium (default), or strict
+    -h --help               Show this help.
+    -v --version            Show the version.
+    -c --case-sensitive     Enable case-sensitive searching
+    -t <term-file>          Term file (JSON) [default: terms.json]
+    -m <match-threshold>    Match threshold can be: loose, medium, or strict [default: strict]
 """
 
 #   nacronym: NASA acronym search tool
@@ -23,9 +21,6 @@ Options:
 #
 #   https://gibsjose.com
 #   https://github.com/gibsjose/nacronym
-
-# @TODO Need fix to allow both `-a ...` and `-m ...` options simultaneously
-# @TODO Add case (in)sensitive search funtionality
 
 import sys
 import os
@@ -149,6 +144,15 @@ class TermDictionary:
 
         return self.data
 
+    def GetMatchRatio(self, search, term):
+        """
+        Wrapper for the `fuzz.ratio` method
+        """
+        search = search if arguments['--case-sensitive'] else search.upper()
+        term = term if arguments['--case-sensitive'] else term.upper()
+
+        return fuzz.ratio(search, term)
+
     def Search(self, search, match_threshold):
         """
         Search for the term and return a list of results
@@ -156,7 +160,8 @@ class TermDictionary:
         results = TermResults(search)
 
         for term in self.terms:
-            if fuzz.ratio(search, term.data['term']) > match_threshold:
+            # Convert to uppercase and perform fuzzy string match
+            if self.GetMatchRatio(search, term.data['term']) > match_threshold:
                 results.Add(term)
 
         return results
@@ -166,21 +171,11 @@ def main():
     Get the term list and search for the given term
     """
     term = arguments['<term>']
-
-    if arguments['<term_file>']:
-        term_file = arguments['<term_file>']
-    else:
-        term_file = 'terms.json'
+    term_file = arguments['-t']
+    match_threshold = MATCH_THRESHOLDS[arguments['-m']]
 
     if not os.path.exists(term_file):
         raise Exception('Term file \'' + term_file + '\' does not exist')
-
-    # Default to medium matching
-    match_threshold = MATCH_THRESHOLDS['medium']
-
-    if arguments['<match_threshold>']:
-        if arguments['<match_threshold>'] in MATCH_THRESHOLDS:
-            match_threshold = MATCH_THRESHOLDS[arguments['<match_threshold>']]
 
     # Create the term dictionary
     dictionary = TermDictionary(term_file)
@@ -194,7 +189,7 @@ def main():
 if __name__ == '__main__':
     try:
         global arguments
-        arguments = docopt(__doc__, version='nacronym 1.2.0')
+        arguments = docopt(__doc__, version='nacronym 1.3.0')
         main()
         sys.exit(0)
 

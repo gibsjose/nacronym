@@ -23,7 +23,7 @@
     "P/T": "Pan and Tilt (cameras)",
     "S/A": "Situational Awareness (cameras)",
     "LRIC": "Long Range Inspection Camera",
-    "SCuP": "SpaceCube Microprocessor, Processor Slice of SpaceCube. 2x Xilinx (MicroBlaze) and 1x Aeroflex per SCuP",
+    "SCuP": "SpaceCube Microprocessor, Processor Slice of SpaceCube",
     "uB": "MicroBlaze soft microprocessor core",
     "RAP": "Robot Arm Pose",
     "RNS": "Relative Navigation System",
