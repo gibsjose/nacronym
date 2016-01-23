@@ -10,7 +10,7 @@ Options:
     -v --version        Show version.
     <term>              Acronym or term to look up.
     <term_file>         Term file (JSON): defaults to 'terms.json'
-    <match_threshold>   Match threshold can be: loose, medium, or strict (default)
+    <match_threshold>   Match threshold can be: loose, medium (default), or strict
 """
 
 #   nacronym: NASA acronym search tool
@@ -38,13 +38,13 @@ from fuzzywuzzy import process      #
 
 MATCH_THRESHOLDS = {
     'loose': 50,
-    'medium': 75,
+    'medium': 70,
     'strict': 90
 }
 
 class Term:
     """
-    Stores the term as the term itself and a dictionary of possible definitions
+    Stores the term as the term itself and a list of possible definitions
     """
     def __init__(self, term, definitions):
         """
@@ -175,8 +175,8 @@ def main():
     if not os.path.exists(term_file):
         raise Exception('Term file \'' + term_file + '\' does not exist')
 
-    # Default to strict matching
-    match_threshold = MATCH_THRESHOLDS['strict']
+    # Default to medium matching
+    match_threshold = MATCH_THRESHOLDS['medium']
 
     if arguments['<match_threshold>']:
         if arguments['<match_threshold>'] in MATCH_THRESHOLDS:
