@@ -189,7 +189,7 @@ def main():
 if __name__ == '__main__':
     try:
         global arguments
-        arguments = docopt(__doc__, version='nacronym 1.3.0')
+        arguments = docopt(__doc__, version='nacronym 1.4.0')
         main()
         sys.exit(0)
 
