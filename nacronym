@@ -104,10 +104,14 @@ class TermResults:
         if len(self.terms) == 0:
             print('No results for \'' + self.search + '\'')
 
+            return 1
+
         # Single result
         elif len(self.terms) == 1:
             print(self.terms[0].data['term'] + ': ', end='')
             self.terms[0].PrintDefinitions()
+
+            return 0
 
         # Multiple results
         else:
@@ -117,6 +121,8 @@ class TermResults:
                 print(term.data['term'] + ': ', end='')
                 term.PrintDefinitions()
                 print('')
+
+            return 0
 
 class TermDictionary:
     """
@@ -190,12 +196,15 @@ def main():
     results = dictionary.Search(term, match_threshold)
 
     # Print results
-    results.Print()
+    status = results.Print()
+
+    # Return status
+    os._exit(status)
 
 if __name__ == '__main__':
     try:
         global arguments
-        arguments = docopt(__doc__, version='nacronym 1.4.1')
+        arguments = docopt(__doc__, version='nacronym 1.4.2')
         main()
         sys.exit(0)
 
