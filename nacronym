@@ -199,7 +199,7 @@ def main():
     status = results.Print()
 
     # Return status
-    os.exit(status)
+    os._exit(status)
 
 if __name__ == '__main__':
     try:
