@@ -20,3 +20,14 @@ pip3 install fuzzywuzzy
 ```
 pip3 install python-Levenshtein
 ```
+
+## Term File
+The term file is a simple JSON file where the key is the acronym/term and the value is either a single definition string or a list of definition strings. For example, a small term file could look like this:
+
+```json
+{
+    "MMU": "Memory Management Unit",
+    "PLB": ["Processor Local Bus", "Programmable Logic Block"],
+    "MPMC": "Memory Controller"
+}
+```
