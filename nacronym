@@ -4,10 +4,10 @@ Usage:
     nacronym [options] <term>
 
 Options:
-    -h --help               Show this help.
-    -v --version            Show the version.
+    -h --help               Show this help
+    -v --version            Show the version
     -c --case-sensitive     Enable case-sensitive searching
-    -t <term-file>          Term file (JSON) [default: terms.json]
+    -t <term-file>          Term file (JSON) override
     -m <match-threshold>    Match threshold can be: loose, medium, or strict [default: strict]
 """
 
@@ -171,9 +171,15 @@ def main():
     Get the term list and search for the given term
     """
     term = arguments['<term>']
-    term_file = arguments['-t']
     match_threshold = MATCH_THRESHOLDS[arguments['-m']]
 
+    # Default to `terms.json` if no override
+    if arguments['-t']:
+        term_file = arguments['-t']
+    else:
+        term_file = os.path.dirname(os.path.realpath(sys.argv[0])) + '/terms.json'
+
+    # Make sure term file exists
     if not os.path.exists(term_file):
         raise Exception('Term file \'' + term_file + '\' does not exist')
 
@@ -189,7 +195,7 @@ def main():
 if __name__ == '__main__':
     try:
         global arguments
-        arguments = docopt(__doc__, version='nacronym 1.4.0')
+        arguments = docopt(__doc__, version='nacronym 1.4.1')
         main()
         sys.exit(0)
 
