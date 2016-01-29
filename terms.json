@@ -78,7 +78,7 @@
     "EMPD": "Enhanced Motor Power Drive",
     "CIB": "Communications Interface Board",
     "SEU": "Single Event Upset",
-    "VNS": "Vision Navigation Sensor",
+    "VNS": ["Vision Navigation Sensor", "Vision Navigation System"],
     "CFE": "Core Flight Executive",
     "CFS": "Core Flight System",
     "CCSDS": "The Consultative Committee for Space Data Systems",
@@ -135,12 +135,11 @@
     "FPOSE": "Flash Pose",
     "AFT": "Automated Functional Test",
     "DTT": "Default Telemetry Test",
-
-    "FDV": "?",
-    "RSV": "?",
-    "CPM": "?",
-    "KRF": "?",
-    "GUID": "?",
-    "PCS": "?",
-    "RSO": "?"
+    "LRF": "Laser Range Finder",
+    "EM": "Engineering Model",
+    "FOT": "Flight Operations Team",
+    "FDV": "Fill Drain Valve",
+    "RSV": "Restore Servicing Vehicle",
+    "CPM": "Cameras on ATDS",
+    "KRF": "Kalman Relnav Filter"
 }
