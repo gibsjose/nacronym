@@ -183,7 +183,7 @@ def main():
     if arguments['-t']:
         term_file = arguments['-t']
     else:
-        term_file = os.path.dirname(os.path.realpath(sys.argv[0])) + '/terms.json'
+        term_file = os.path.join(os.path.dirname(__file__), 'terms.json')
 
     # Make sure term file exists
     if not os.path.exists(term_file):
@@ -201,7 +201,7 @@ def main():
     # Return status
     os._exit(status)
 
-if __name__ == '__main__':
+def entry():
     try:
         global arguments
         arguments = docopt(__doc__, version='nacronym 1.4.2')
@@ -217,3 +217,6 @@ if __name__ == '__main__':
         print(str(e))
         traceback.print_exc()
         os._exit(1)
+
+if __name__ == '__main__':
+    entry()

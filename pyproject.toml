@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = 'nacronym'
+version = "0.1"
+authors = [
+  { name="Joe Gibson", email="gibsjose@mail.gvsu.edu"},
+]
+license = {text = "LICENSE.txt"}
+description = "Search for NASA term definitions amongst an endless supply of acronyms."
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["acronym", "json"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Intependent",
+]
+dependencies = [
+    "docopt",
+    "fuzzywuzzy",
+    "python-Levenshtein",
+]
+
+[project.scripts]
+nacronym = "nacronym:entry"
+
+[project.urls]
+"Homepage" = "https://github.com/gibsjose/nacronym"
+"Bug Tracker" = "https://github.com/gibsjose/nacronym/issues"
