@@ -183,7 +183,7 @@ def main():
     if arguments['-t']:
         term_file = arguments['-t']
     else:
-        term_file = os.path.dirname(os.path.realpath(sys.argv[0])) + '/terms.json'
+        term_file = os.path.join(os.path.dirname(__file__), 'terms.json')
 
     # Make sure term file exists
     if not os.path.exists(term_file):
